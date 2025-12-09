@@ -11,21 +11,25 @@
             background-image: url('images/space.gif');
             background-size: cover;
             background-position: center;
-            background-repeat: no-repeat;
+            background-repeat: repeat;
         }
     </style>
 </head>
 <body>
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80vh;">
 
-        <img src="images/welcome_jp.png" alt="what's a webpage? something ducks walk on?" style="width: 300px; height: 300px; object-fit: scale-down; margin-bottom: 2rem;">
+        <img src="images/welcome_jp.png" style="width: 300px; height: 300px; object-fit: scale-down; margin-bottom: 2rem;">
 
-        <div style="display: flex; flex-direction: row; align-items: center; justify-content: center; gap: 2rem; font-family: 'Times New Roman', Times, serif;">
-            <a href="projects_jp.html">プロジェクト</a>
-            <a href="https://x.com/kyotooutrun" target="_blank">Twitter</a>
-            <a href="https://bsky.app/profile/kyotooutrun.bsky.social" target="_blank">Bluesky</a>
-            <a href="github.com/kyotooutrun" target="_blank">GitHub</a>
-        </div>
+        <div class="window" style="margin-top: 1rem;">
+          <div class="title-bar">
+            <div class="title-bar-text">Links</div>
+          </div>
+          <div class="window-body" style="display: flex; gap: 1.5rem;">
+              <a href="projects.html">プロジェクト</a>
+              <a href="https://x.com/kyotooutrun" target="_blank">Twitter</a>
+              <a href="https://bsky.app/profile/kyotooutrun.bsky.social" target="_blank">Bluesky</a>
+              <a href="https://github.com/kyotooutrun" target="_blank">GitHub</a>
+          </div>
         <a href="index.html" style="margin-top: 2rem;">English</a>
     </div>
 </body>
