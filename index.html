@@ -16,14 +16,70 @@
         a:hover {
             color: #88f;
             text-shadow: 0 0 6px #fff;
-}
+        }
+
+        .tagline {
+        width: 100%;
+        overflow: hidden;
+        box-sizing: border-box;
+        margin-top: 0.5rem;
+        }
+
+
+        .tagline__inner {
+        display: inline-flex;
+        white-space: nowrap;
+        align-items: center;
+        gap: 2.5rem;
+        padding: 0.7rem 0;
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1rem;
+        color: #fff;
+        will-change: transform;
+        }
+
+
+        .tagline__item {
+        display: inline-block;
+        padding: 0.1rem 0.35rem;
+        opacity: 0.95;
+        text-shadow: 0 0 4px rgba(255,255,255,0.08);
+        }
+
+
+        @keyframes taglineScroll {
+        0%   { transform: translateX(0); }
+        100% { transform: translateX(-50%); } 
+        }
+
+        .tagline__inner.scrolling {
+        animation: taglineScroll linear infinite;
+        animation-duration: 20s;
+        animation-timing-function: linear;
+        }
+
+        .tagline:hover .marquee__inner,
+        .tagline:focus-within .marquee__inner,
+        .tagline__inner:focus {
+        animation-play-state: paused;
+        outline: none;
+        }
+
+        @media (max-width: 420px){
+        .tagline__inner { font-size: 0.92rem; gap: 1.2rem; }
+        }
+
 
     </style>
 </head>
 <body>
     <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 80vh;">
 
-        <img src="images/welcome.png" style="width: 300px; height: 300px; object-fit: scale-down; margin-bottom: 2rem;">
+    <img src="images/welcome.png" style="width: 300px; height: 300px; object-fit: scale-down; margin-bottom: 0.2rem;">
+
+    <div class="tagline" role="region">
+    <div class="tagline__inner" id="tagline__inner" tabindex="0"></div>
+    </div>
 
     <div class="window" style="margin-top: 1rem;">
       <div class="title-bar">
@@ -31,12 +87,56 @@
       </div>
       <div class="window-body" style="display: flex; gap: 1.5rem;">
           <a href="projects.html">Projects</a>
-          <a href="https://x.com/kyotooutrun" target="_blank">Twitter</a>
-          <a href="https://bsky.app/profile/kyotooutrun.bsky.social" target="_blank">Bluesky</a>
-          <a href="https://github.com/kyotooutrun" target="_blank">GitHub</a>
+          <a href="https://x.com/kyotooutrun" rel="noopener noreferrer" target="_blank">Twitter</a>
+          <a href="https://bsky.app/profile/kyotooutrun.bsky.social" rel="noopener noreferrer" target="_blank">Bluesky</a>
+          <a href="https://github.com/kyotooutrun" rel="noopener noreferrer" target="_blank">GitHub</a>
       </div>
     </div>
         <a href="index_jp.html" style="margin-top: 2rem;">日本語</a>
     </div>
+    <script>
+        const taglines = [
+            "What’s a webpage? Something ducks walk on?",
+            "It didn't catch fire, so I'm calling this a success.",
+            "Powered by sheer will and questionable decisions.",
+            "Typing funny words to politely convince the magic rock to cooperate since way too early.",
+            "Congratulations, you’re our 10,000th visitor! Click here to get absolutely nothing!",
+            "See, I <em>can</em> use HTML!",
+            "Wyatt Moore's cool website.",
+            "Compiling Shaders (4,120)",
+            "If this is broken, please pretend it isn’t. Thank you for your cooperation.",
+            "This site is best viewed on desktop."
+        ];
+
+        const randomTagline = taglines[Math.floor(Math.random() * taglines.length)];
+
+        const tagline = taglines[Math.floor(Math.random() * taglines.length)];
+
+
+        const inner = document.getElementById('tagline__inner');
+
+
+        function buildRepeated(tagline, count = 10) {
+            const frag = document.createDocumentFragment();
+            for (let i = 0; i < count; i++) {
+                const span = document.createElement('span');
+                span.className = 'tagline__item';
+                span.textContent = tagline;
+                frag.appendChild(span);
+            }
+            return frag;
+        }
+
+
+        inner.appendChild(buildRepeated(tagline));
+
+        inner.appendChild(buildRepeated(tagline));
+
+        // Start animation on next frame
+        requestAnimationFrame(() => {
+            inner.classList.add('scrolling');
+        });
+    </script>
+
 </body>
 </html>
